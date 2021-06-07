@@ -9,8 +9,8 @@ let RedisStore = require("connect-redis")(session);
 const { MONGO_USER, MONGO_PASSWORD, MONGO_PORT, MONGO_IP, REDIS_URL, REDIS_PORT, SESSION_SECRET } = require("./config/config");
 
 let RedisClient = redis.createClient({
-    host: REDIS_URL,
-    port: REDIS_PORT
+    host: process.env.REDIS_URL,
+    port: process.env.REDIS_PORT
 
 });
 
@@ -19,7 +19,7 @@ const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 4000;
 
-const MONGO_URL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`;
+const MONGO_URL = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_IP}:${process.env.MONGO_PORT}/?authSource=admin`;
 
 
 const connectWithRetry = () => {
@@ -46,7 +46,7 @@ app.use(session({
     store: new RedisStore({
         client: RedisClient
     }),
-    secret: SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     cookie: {
         secure: false,
         resave: false,
