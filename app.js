@@ -6,6 +6,9 @@ const session = require("express-session");
 const redis = require("redis");
 let RedisStore = require("connect-redis")(session);
 
+const app = express();
+dotenv.config();
+
 const { MONGO_USER, MONGO_PASSWORD, MONGO_PORT, MONGO_IP, REDIS_URL, REDIS_PORT, SESSION_SECRET } = require("./config/config");
 
 let RedisClient = redis.createClient({
@@ -15,8 +18,7 @@ let RedisClient = redis.createClient({
 });
 
 
-const app = express();
-dotenv.config();
+
 const PORT = process.env.PORT || 4000;
 
 const MONGO_URL = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_IP}:${process.env.MONGO_PORT}/?authSource=admin`;
