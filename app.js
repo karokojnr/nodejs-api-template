@@ -34,7 +34,7 @@ const connectWithRetry = () => {
             console.log("Successfully connected to database");
         })
         .catch((err) => {
-            console.log(err.message)
+            console.log("error here", err.message)
             setTimeout(connectWithRetry, 5000)
         });
 }
