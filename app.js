@@ -54,8 +54,8 @@ app.use(session({
         httpOnly: true,
         maxAge: 60000
     },
-    // resave: false,
-    // saveUninitialized: false,
+    resave: false,
+    saveUninitialized: false,
 }))
 app.use(cors());
 app.use(express.json());
