@@ -21,7 +21,7 @@ let RedisClient = redis.createClient({
 
 const PORT = process.env.PORT || 4000;
 
-const MONGO_URL = `mongodb://karokojnr:karokojnr@mongo:27017/?authSource=admin`;
+const MONGO_URL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`;
 
 
 const connectWithRetry = () => {
@@ -30,13 +30,12 @@ const connectWithRetry = () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false,
-            useCreateIndex: true,
         })
         .then(() => {
             console.log("Successfully connected to database");
         })
         .catch((err) => {
-            console.log("error here", err.message)
+            console.log("error here", err)
             setTimeout(connectWithRetry, 5000)
         });
 }
