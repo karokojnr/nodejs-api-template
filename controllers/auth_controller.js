@@ -82,7 +82,7 @@ exports.postRegister = async (req, res) => {
             });
         }
     } catch (error) {
-        console.error(error.message);
+        console.error(error);
         res.status(500).send("Server Error...");
     }
 }
