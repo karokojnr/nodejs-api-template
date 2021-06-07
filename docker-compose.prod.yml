@@ -1,0 +1,14 @@
+version: "3"
+services:
+    nginx:
+        # image: nginx:stable-apine
+        ports: 
+            - "80:80"
+    node-app:
+        build:
+            context: .
+            args:
+                NODE_ENV: production
+        environment:
+            - NODE_ENV=production
+        command: node app.js

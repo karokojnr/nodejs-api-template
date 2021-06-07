@@ -1,0 +1,26 @@
+version: "3"
+services:
+    nginx:
+        # image: nginx:stable-apine
+        ports: 
+            - "5000:80"
+    node-app:
+        build:
+            context: .
+            args:
+                NODE_ENV: development
+        volumes:
+            - ./:/app #bind mount
+            - /app/node_modules #anonymous volume
+        environment:
+            - NODE_ENV=development
+            - MONGO_USER=karokojnr
+            - MONGO_PASSWORD=karokojnr
+            - MONGO_IP=mongo
+            - MONGO_PORT=27017
+            - SESSION_SECRET=secret
+        command: npm run dev
+    mongo:
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=karokojnr
+            - MONGO_INITDB_ROOT_PASSWORD=karokojnr
