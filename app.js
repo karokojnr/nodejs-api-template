@@ -21,7 +21,7 @@ let RedisClient = redis.createClient({
 
 const PORT = process.env.PORT || 4000;
 
-const MONGO_URL = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_IP}:${process.env.MONGO_PORT}/?authSource=admin`;
+const MONGO_URL = `mongodb://karokojnr:karokojnr@mongo:27017/?authSource=admin`;
 
 
 const connectWithRetry = () => {
