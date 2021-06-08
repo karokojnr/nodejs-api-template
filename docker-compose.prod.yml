@@ -13,7 +13,7 @@ services:
             - NODE_ENV=production
             - MONGO_USER=root
             - MONGO_PASSWORD=example
-            - SESSION_SECRET=${SESSION_SECRET}
+            - SESSION_SECRET=secret
         command: node app.js
     mongo:
         environment:
