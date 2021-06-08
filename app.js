@@ -12,8 +12,8 @@ dotenv.config();
 const { MONGO_USER, MONGO_PASSWORD, MONGO_PORT, MONGO_IP, REDIS_URL, REDIS_PORT, SESSION_SECRET } = require("./config/config");
 
 let RedisClient = redis.createClient({
-    host: REDIS_URL,
-    port: REDIS_PORT
+    host: process.env.REDIS_URL,
+    port: process.env.REDIS_PORT
 
 });
 
@@ -47,7 +47,7 @@ app.use(session({
     store: new RedisStore({
         client: RedisClient
     }),
-    secret: SESSION_SECRET,
+    secret: process.env.SESSION_SECRET,
     cookie: {
         secure: false,
         resave: false,
