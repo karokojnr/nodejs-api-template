@@ -17,8 +17,8 @@ services:
     mongo:
         image: mongo
         environment:
-            - MONGO_INITDB_ROOT_USERNAME=karokojnr
-            - MONGO_INITDB_ROOT_PASSWORD=karokojnr
+            - MONGO_INITDB_ROOT_USERNAME: karokojnr
+            - MONGO_INITDB_ROOT_PASSWORD: karokojnr
         volumes: 
             - mongo-db:/data/db # named volume (<name>: path )
     redis:
