@@ -25,4 +25,4 @@ services:
         image: redis
 volumes: # list of named volumes
     mongo-db:
-        
+
