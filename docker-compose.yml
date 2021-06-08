@@ -15,6 +15,7 @@ services:
         depends_on: 
             - mongo
     mongo:
+        user: $UID
         image: mongo
         environment:
             - MONGO_INITDB_ROOT_USERNAME=karokojnr
