@@ -15,14 +15,14 @@ services:
         depends_on: 
             - mongo
     mongo:
-        user: $UID
+        container_name: mongo
         image: mongo
         environment:
             - MONGO_INITDB_ROOT_USERNAME=karokojnr
             - MONGO_INITDB_ROOT_PASSWORD=karokojnr
         volumes: 
-            - mongo-db:/data/db # named volume (<name>: path )
+            - ./data:/data/db # named volume (<name>: path )
     redis:
         image: redis
-volumes: # list of named volumes
-    mongo-db:
+# volumes: # list of named volumes
+#     mongo-db:
