@@ -5,7 +5,7 @@ const validate = require("../middlewares/validation");
 const authorize = require("../middlewares/auth");
 
 const router = express();
-router.get("/", authorize, todo_controller.getHome);
+router.get("/", todo_controller.getHome);
 router.post("/register", validate, auth_controller.postRegister);
 router.post("/login", validate, auth_controller.postLogin);
 router.get("/is-verified", authorize, auth_controller.getAuthorization);
