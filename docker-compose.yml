@@ -21,8 +21,9 @@ services:
             - MONGO_INITDB_ROOT_USERNAME=karokojnr
             - MONGO_INITDB_ROOT_PASSWORD=karokojnr
         volumes: 
-            - mongo-db:/data/db # named volume (<name>: path )
+            - ./data:/data/db
+            # - mongo-db:/data/db # named volume (<name>: path )
     redis:
         image: redis
-volumes: # list of named volumes
-    mongo-db:
+# volumes: # list of named volumes
+#     mongo-db:
