@@ -5,6 +5,13 @@ services:
         ports: 
             - "80:80"
     node-app:
+        deploy:
+            replicas: 8 # Set how many instances of a specific service you want to run, in this case 8 containers
+            restart_policy:
+                condition: any
+            update_config:
+                parallelism: 2 #Update two containers at a time
+                delay: 15s
         build:
             context: .
             args:
