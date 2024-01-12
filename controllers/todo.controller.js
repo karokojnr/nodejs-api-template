@@ -1,9 +1,9 @@
-const TODO = require("../models/TODO")
+const TODO = require("../models/Todo")
 exports.getHome = async (req, res) => {
     try {
         const todos = await TODO.find();
         res.status(200).json({
-            message: 'WELCOME - TODOS:)',
+            message: 'todos',
             todos
         });
     } catch (error) {

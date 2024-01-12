@@ -1,6 +1,5 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
-// const jwtGeneretor = require("../utils/jwtGeneretor");
 
 exports.getAuthorization = (req, res) => {
     try {
