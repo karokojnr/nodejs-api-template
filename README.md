@@ -2,7 +2,7 @@
 
 ![alt text](./node-docker.jpeg)
 
-This is a Node.js Api Template. It uses Express, MongoDB, Redis and Docker.
+This is a Node.js Api Skeleton. It uses Express, MongoDB, Redis and Docker.
 
 The docker-compose.prod file includes implementation for docker-swarm.
 
