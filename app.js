@@ -9,7 +9,7 @@ const RedisStore = require("connect-redis")(session);
 const app = express();
 dotenv.config();
 
-const { MONGO_USER, MONGO_PASSWORD, MONGO_PORT, MONGO_IP, REDIS_URL, REDIS_PORT, SESSION_SECRET } = require("./config/config");
+const { MONGO_DB_URL, REDIS_URL, REDIS_PORT, SESSION_SECRET } = require("./config/config");
 
 const RedisClient = redis.createClient({
     host: REDIS_URL,
@@ -20,29 +20,28 @@ const RedisClient = redis.createClient({
 
 const PORT = process.env.PORT || 4000;
 
-const MONGO_URL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`;
+const MONGO_URL = `${MONGO_DB_URL}/?authSource=admin`;
 
 
-const connectWithRetry = () => {
-    mongoose
-        .connect(MONGO_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: false,
-        })
-        .then(() => {
-            console.log("Successfully connected to database");
-        })
-        .catch((err) => {
-            console.log("error here", err)
-            setTimeout(connectWithRetry, 5000)
-        });
+const connectWithRetry = async () => {
+    try {
+        await mongoose
+            .connect(MONGO_URL, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                useFindAndModify: false,
+            });
+        console.log("Successfully connected to database");
+    } catch (error) {
+        console.log("error connecting to Mongo DB", err)
+        setTimeout(connectWithRetry, 5000)
+    }
 }
 
 connectWithRetry();
 
 // trust some header nginx proxy will add into our requests
-app.enable("trust proxy"); 
+app.enable("trust proxy");
 
 app.use(session({
     store: new RedisStore({
