@@ -10,7 +10,7 @@ router.get("/", todo_controller.getHome);
 router.post("/register", validate, auth_controller.postRegister);
 router.post("/login", validate, auth_controller.postLogin);
 
-router.get("/is_verified", authorize, auth_controller.getAuthorization);
+router.get("/is-verified", authorize, auth_controller.getAuthorization);
 
 router.post("/todos", authorize, todo_controller.createTodo);
 router.get("/todos", authorize, todo_controller.getTodos);
