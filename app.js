@@ -33,7 +33,7 @@ const connectWithRetry = async () => {
             });
         console.log("Successfully connected to database");
     } catch (error) {
-        console.log("error connecting to Mongo DB", err)
+        console.log("error connecting to the database", err)
         setTimeout(connectWithRetry, 5000)
     }
 }
